@@ -12,6 +12,7 @@ python-dotenv = "^0.15.0"
 loguru = "^0.5.3"
 jishaku = "^1.20.0"
 asyncpg = "^0.22.0"
+discord-ext-menus = {git = "https://github.com/Rapptz/discord-ext-menus"}
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.11.1"
