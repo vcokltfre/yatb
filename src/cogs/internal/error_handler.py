@@ -15,14 +15,15 @@ class ErrorHandler(commands.Cog):
     def __init__(self, bot: Bot):
         self.bot = bot
 
-    @staticmethod
-    def get_embed(title: str, description: str):
+    def get_embed(self, title: str, description: str):
         embed = Embed(
             title=title,
             description=str(description),
             colour=0xFF0000,
             timestamp=datetime.utcnow(),
         )
+
+        embed.set_footer(text=str(self.bot.user.name), icon_url=str(self.bot.user.avatar_url))
 
         return embed
 
