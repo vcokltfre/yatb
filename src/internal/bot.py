@@ -48,6 +48,7 @@ class Bot(commands.Bot):
 
     async def login(self, *args, **kwargs) -> None:
         """Create the database connection before login."""
+        logger.info("Logging in to Discord...")
 
         await self.db.setup()
 
@@ -62,3 +63,8 @@ class Bot(commands.Bot):
         """Get the context with the custom context class."""
 
         return await super().get_context(message, cls=Context)
+
+    async def on_connect(self):
+        """Log the connect event."""
+
+        logger.info("Connected to Discord.")
