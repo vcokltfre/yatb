@@ -52,6 +52,9 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, errors.CommandOnCooldown):
             embed = self.get_embed("Command on cooldown", f"This command is on cooldown. Try again in {round(error.retry_after, 2)}s")
             await ctx.send(embed=embed)
+        else:
+            embed = self.get_embed("Unexpected internal error", f"```py\n{error}\n```")
+            await ctx.send(embed=embed)
 
         logger.warning(f"Error in command {command} invoked by {ctx.message.author}\n{error.__class__.__name__}: {error}")
 
