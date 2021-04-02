@@ -12,7 +12,7 @@ Result = defaultdict("Result", ["result", "time"])
 
 
 class General(commands.Cog):
-    """A custom error handling cog."""
+    """A cog of general bot commands."""
 
     def __init__(self, bot: Bot):
         self.bot = bot
