@@ -2,13 +2,13 @@ from discord import Embed
 from discord.ext import commands
 
 from time import time
-from collections import defaultdict
+from collections import namedtuple
 
 from src.internal.bot import Bot
 from src.internal.context import Context
 
 
-Result = defaultdict("Result", ["result", "time"])
+Result = namedtuple("Result", ["result", "time"])
 
 
 class General(commands.Cog):
