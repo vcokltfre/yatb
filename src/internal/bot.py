@@ -1,5 +1,5 @@
 from discord.ext import commands
-from discord import Intents, Message
+from discord import Intents, Message, AllowedMentions
 
 from loguru import logger
 from traceback import format_exc
@@ -22,6 +22,7 @@ class Bot(commands.Bot):
             command_prefix=self.get_prefix,
             intents=intents,
             help_command=Help(),
+            allowed_mentions=AllowedMentions(roles=False, everyone=False),
             *args,
             **kwargs
         )
