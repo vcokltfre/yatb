@@ -39,8 +39,8 @@ class Bot(commands.Bot):
         for ext in exts:
             try:
                 self.load_extension(ext)
-            except:
-                logger.error(f"Error while loading {ext}:\n{format_exc()}")
+            except Exception as e:
+                logger.error(f"Error while loading {ext}: {e}:\n{format_exc()}")
             else:
                 logger.info(f"Successfully loaded cog {ext}.")
                 success += 1

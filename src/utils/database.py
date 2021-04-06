@@ -68,7 +68,7 @@ class Database:
                 await self.execute(f.read())
             await self.execute("INSERT INTO Migrations VALUES ($1);", num)
         except Exception as e:
-            logger.error(f"Failed to run migration {filename}: {format_exc()}")
+            logger.error(f"Failed to run migration {filename}: {e}: {format_exc()}")
             return False
         else:
             logger.info(f"Successfully ran migration {filename}.")

@@ -97,7 +97,7 @@ class HelpMenu(menus.Menu):
             embed1 = discord.Embed(
                 title=embed.title, description=embed.description, colour=embed.colour
             )
-            for field in embed.fields[page : page + max_embeds]:
+            for field in embed.fields[page: page + max_embeds]:
                 embed1.add_field(name=field.name, value=field.value, inline=False)
             pages.append(embed1)
         return cls(pages, **options)
