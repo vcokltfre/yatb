@@ -6,12 +6,13 @@ from collections import namedtuple
 
 from src.internal.bot import Bot
 from src.internal.context import Context
+from src.internal.cog import Cog
 
 
 Result = namedtuple("Result", ["result", "time"])
 
 
-class General(commands.Cog):
+class General(Cog):
     """A cog of general bot commands."""
 
     def __init__(self, bot: Bot):

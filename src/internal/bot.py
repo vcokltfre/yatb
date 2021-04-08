@@ -29,10 +29,18 @@ class Bot(commands.Bot):
 
         self.db: Database = Database()
 
+    def add_cog(self, cog) -> None:
+        """Add a cog to the bot. Does not add disabled cogs."""
+
+        if not hasattr(cog, "enabled") or cog.enabled:
+            logger.info(f"Loading cog {cog.qualified_name}")
+            return super().add_cog(cog)
+        logger.info(f"Not loading cog {cog.qualified_name}")
+
     def load_extensions(self, *exts) -> None:
         """Load a given set of extensions."""
 
-        logger.info(f"Starting loading {len(exts)} cogs...")
+        logger.info(f"Starting loading {len(exts)} extensions...")
 
         success = 0
 
@@ -42,10 +50,10 @@ class Bot(commands.Bot):
             except Exception as e:
                 logger.error(f"Error while loading {ext}: {e}:\n{format_exc()}")
             else:
-                logger.info(f"Successfully loaded cog {ext}.")
+                logger.info(f"Successfully loaded extension {ext}.")
                 success += 1
 
-        logger.info(f"Cog loading finished. Success: {success}. Failed: {len(exts) - success}.")
+        logger.info(f"Extension loading finished. Success: {success}. Failed: {len(exts) - success}.")
 
     async def login(self, *args, **kwargs) -> None:
         """Create the database connection before login."""

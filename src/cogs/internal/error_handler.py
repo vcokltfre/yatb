@@ -7,9 +7,11 @@ from datetime import datetime
 
 from src.internal.bot import Bot
 from src.internal.context import Context
+from src.internal.cog import Cog, disabled
 
 
-class ErrorHandler(commands.Cog):
+@disabled
+class ErrorHandler(Cog):
     """A custom error handling cog."""
 
     def __init__(self, bot: Bot):
