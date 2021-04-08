@@ -7,7 +7,7 @@ from datetime import datetime
 
 from src.internal.bot import Bot
 from src.internal.context import Context
-from src.internal.cog import Cog, disabled
+from src.internal.cog import Cog
 
 
 class ErrorHandler(Cog):
