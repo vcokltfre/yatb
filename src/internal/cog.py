@@ -1,7 +1,5 @@
 from discord.ext.commands import Cog as _BaseCog
 
-from .bot import Bot
-
 
 class Cog(_BaseCog):
     """A custom Cog for extra functionality."""
