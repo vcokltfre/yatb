@@ -10,7 +10,6 @@ from src.internal.context import Context
 from src.internal.cog import Cog, disabled
 
 
-@disabled
 class ErrorHandler(Cog):
     """A custom error handling cog."""
 
