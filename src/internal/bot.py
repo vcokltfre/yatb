@@ -66,7 +66,7 @@ class Bot(commands.Bot):
     async def get_prefix(self, message: Message):
         """Get a dynamic prefix."""
 
-        return "!"  # Implementation left to actual bot, rather than yatb
+        return "!"
 
     async def get_context(self, message: Message):
         """Get the context with the custom context class."""
