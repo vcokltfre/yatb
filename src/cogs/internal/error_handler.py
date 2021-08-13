@@ -1,13 +1,13 @@
+from datetime import datetime
+
 from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import CommandError, errors
-
 from loguru import logger
-from datetime import datetime
 
 from src.internal.bot import Bot
-from src.internal.context import Context
 from src.internal.cog import Cog
+from src.internal.context import Context
 
 
 class ErrorHandler(Cog):
@@ -24,7 +24,9 @@ class ErrorHandler(Cog):
             timestamp=datetime.utcnow(),
         )
 
-        embed.set_footer(text=str(self.bot.user.name), icon_url=str(self.bot.user.avatar_url))
+        embed.set_footer(
+            text=str(self.bot.user.name), icon_url=str(self.bot.user.avatar_url)
+        )
 
         return embed
 
@@ -60,7 +62,9 @@ class ErrorHandler(Cog):
             embed = self.get_embed("Unexpected internal error", f"```py\n{error}\n```")
             await ctx.send(embed=embed)
 
-        logger.warning(f"Error in command {command} invoked by {ctx.message.author}\n{error.__class__.__name__}: {error}")
+        logger.warning(
+            f"Error in command {command} invoked by {ctx.message.author}\n{error.__class__.__name__}: {error}"
+        )
 
     async def user_input_error(self, ctx: Context, error: errors.UserInputError):
         """Handle a user input error."""
@@ -90,7 +94,7 @@ class ErrorHandler(Cog):
         else:
             embed = self.get_embed(
                 "Input error",
-                "Something about your input seems off. Check the arguments and try again."
+                "Something about your input seems off. Check the arguments and try again.",
             )
             await ctx.send(embed=embed)
             await help_command
@@ -102,7 +106,7 @@ class ErrorHandler(Cog):
         bot_missing_errors = (
             errors.BotMissingPermissions,
             errors.BotMissingRole,
-            errors.BotMissingAnyRole
+            errors.BotMissingAnyRole,
         )
 
         if isinstance(e, bot_missing_errors):

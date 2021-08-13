@@ -1,13 +1,12 @@
+from collections import namedtuple
+from time import time
+
 from discord import Embed
 from discord.ext import commands
 
-from time import time
-from collections import namedtuple
-
 from src.internal.bot import Bot
-from src.internal.context import Context
 from src.internal.cog import Cog
-
+from src.internal.context import Context
 
 Result = namedtuple("Result", ["result", "time"])
 
@@ -41,7 +40,9 @@ class General(Cog):
         embed.add_field(name="API Send", value=f"{m_send.time}ms")
         embed.add_field(name="API Edit", value=f"{m_edit.time}ms")
         embed.add_field(name="API Delete", value=f"{m_delete.time}ms")
-        embed.add_field(name="WS Latency", value=f"{round(self.bot.latency * 1000, 2)}ms")
+        embed.add_field(
+            name="WS Latency", value=f"{round(self.bot.latency * 1000, 2)}ms"
+        )
 
         await ctx.reply(embed=embed)
 

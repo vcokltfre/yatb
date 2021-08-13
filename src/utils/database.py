@@ -1,7 +1,7 @@
-from asyncpg import create_pool
-from traceback import format_exc
 from os import getenv, walk
+from traceback import format_exc
 
+from asyncpg import create_pool
 from loguru import logger
 
 
@@ -32,7 +32,9 @@ class Database:
             return
 
         try:
-            migration = await self.fetchrow("SELECT id FROM Migrations ORDER BY id DESC LIMIT 1;")
+            migration = await self.fetchrow(
+                "SELECT id FROM Migrations ORDER BY id DESC LIMIT 1;"
+            )
         except Exception as e:
             print(e)
             migration = None

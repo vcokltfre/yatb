@@ -1,13 +1,13 @@
-from discord.ext import commands
-from discord import Intents, Message, AllowedMentions
-
-from loguru import logger
 from traceback import format_exc
 
-from .help import Help
-from .context import Context
+from discord import AllowedMentions, Intents, Message
+from discord.ext import commands
+from loguru import logger
 
 from src.utils.database import Database
+
+from .context import Context
+from .help import Help
 
 
 class Bot(commands.Bot):
@@ -24,7 +24,7 @@ class Bot(commands.Bot):
             help_command=Help(),
             allowed_mentions=AllowedMentions(roles=False, everyone=False),
             *args,
-            **kwargs
+            **kwargs,
         )
 
         self.db: Database = Database()
@@ -53,7 +53,9 @@ class Bot(commands.Bot):
                 logger.info(f"Successfully loaded extension {ext}.")
                 success += 1
 
-        logger.info(f"Extension loading finished. Success: {success}. Failed: {len(exts) - success}.")
+        logger.info(
+            f"Extension loading finished. Success: {success}. Failed: {len(exts) - success}."
+        )
 
     async def login(self, *args, **kwargs) -> None:
         """Create the database connection before login."""
